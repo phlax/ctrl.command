@@ -1,0 +1,17 @@
+# https://travis-ci.org/#!/phlax/ctrl.command
+dist: trusty
+language: python
+python:
+  - "3.5"
+
+install:
+
+  - git clone https://github.com/phlax/ctrl.core
+  - cd ctrl.core && pip install -e . && cd ..
+
+  - pip install -e .
+  - pip install ctrl.command[test]
+
+script:
+
+  - flake8 .
