@@ -84,7 +84,7 @@ class Commandable(Command):
                 for name, command
                 in self.subcommands.items()}
 
-    async def run(self, options):
+    async def run(self, loop, options):
         self.commands = self.get_commands(options) or {}
         if self.commands.get(options.subcommand):
-            await self.commands[options.subcommand].handle(*options.args)
+            await self.commands[options.subcommand].handle(loop, *options.args)
