@@ -34,6 +34,6 @@ class CtrlRunner(Commandable):
         loop.run_until_complete(
             app.setup(['ctrl.command'] + apps))
         try:
-            loop.run_until_complete(self.run(loop, self.parse(*args)))
+            print(loop.run_until_complete(self.run(loop, self.parse(*args))))
         finally:
             loop.close()
