@@ -5,10 +5,8 @@ from zope import component, interface
 import colorama
 
 from ctrl.command.base import Commandable
-from ctrl.config.interfaces import ICtrlConfig
-from ctrl.core.interfaces import ICtrlApp
-
-from .interfaces import ICommandRunner, ISubcommand
+from ctrl.core.interfaces import (
+    ICommandRunner, ICtrlApp, ISubcommand, ICtrlConfig)
 
 
 colorama.init()

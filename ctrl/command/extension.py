@@ -1,9 +1,8 @@
 
 from zope import component
 
-from ctrl.core.interfaces import ICtrlApp
+from ctrl.core.interfaces import ICommandRunner, ICtrlApp, IShell
 
-from .interfaces import ICommandRunner, IShell
 from .runner import CtrlRunner
 from .shell import Shell
 

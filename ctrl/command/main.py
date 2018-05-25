@@ -3,8 +3,7 @@ import sys
 from zope import component
 
 from ctrl.core.exceptions import CtrlError
-from ctrl.core.interfaces import ICtrlApp
-from .interfaces import ICommandRunner
+from ctrl.core.interfaces import ICommandRunner, ICtrlApp
 
 
 def main():
