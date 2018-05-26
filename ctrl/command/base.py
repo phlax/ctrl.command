@@ -88,4 +88,4 @@ class Commandable(Command):
         self.commands = self.get_commands(options) or {}
         if self.commands.get(options.subcommand):
             return await self.commands[
-                options.subcommand].handle(loop, *options.args)
+                options.subcommand].handle(*options.args, loop=loop)

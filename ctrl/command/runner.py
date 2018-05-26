@@ -6,7 +6,7 @@ import colorama
 
 from ctrl.command.base import Commandable
 from ctrl.core.interfaces import (
-    ICommandRunner, ICtrlApp, ISubcommand, ICtrlConfig)
+    ICommandRunner, IApp, ISubcommand)
 
 
 colorama.init()
@@ -20,18 +20,7 @@ class CtrlRunner(Commandable):
         subcommands = component.getAdapters((self, ), ISubcommand)
         return dict(subcommands)
 
-    def handle(self, *args):
-        app = component.getUtility(ICtrlApp)
+    def run(self, *args):
         loop = asyncio.get_event_loop()
-        loop.run_until_complete(app.setup(['ctrl.config']))
-        config = component.getUtility(ICtrlConfig)
-        apps = (
-            config.config.get('controller', 'apps').split('\n')
-            if config.config.has_section('controller')
-            else [])
-        loop.run_until_complete(
-            app.setup(['ctrl.command'] + apps))
-        try:
-            print(loop.run_until_complete(self.run(loop, self.parse(*args))))
-        finally:
-            loop.close()
+        component.getUtility(IApp).run(
+            super(CtrlRunner, self).run(loop, self.parse(*args)))
